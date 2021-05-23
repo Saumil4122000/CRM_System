@@ -6,7 +6,7 @@ export const Searchform = ({handleOnChange,str}) => {
     return (
         <Form>
             <Form.Group as={Row}>
-                <Form.Label column  sm="2">Search:{" "}</Form.Label>
+                <Form.Label column  sm="2">Search:{""}</Form.Label>
                 <Col sm="10">
                     <Form.Control name="searchStr" onChange={handleOnChange} value={str} placeholder="search...">
 

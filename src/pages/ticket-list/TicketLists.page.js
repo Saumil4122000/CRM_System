@@ -4,7 +4,7 @@ import {PageBreadcrumb} from '../../Component/breadcrumb/Breadcrumb.comp'
 import { Searchform } from '../../Component/search-form/Searchform.comp'
 import {TicketTable} from '../../Component/ticket-table/TicketTable.comp'
 import tickets from '../../assets/data/dummy-tickets.json'
-
+import {Link} from 'react-router-dom'
 
 export const TicketLists = () => {
 
@@ -36,7 +36,8 @@ export const TicketLists = () => {
                 </Row>
                 <Row  className="mt-4">
                     <Col>
-                         <Button variant="info">Add Ticket</Button>
+                        <Link to="/add-ticket"> <Button variant="info">Add Ticket</Button></Link>
+                        
                     </Col>
                     
                     <Col className="text-right">
