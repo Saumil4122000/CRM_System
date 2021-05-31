@@ -1,3 +1,5 @@
+import {useDispatch} from 'react-redux'
+import {fetchAllTickets} from './ticketAction'
 import React,{useState,useEffect} from 'react'
 import {Row,Container,Col, Button} from 'react-bootstrap'
 import {PageBreadcrumb} from '../../Component/breadcrumb/Breadcrumb.comp'
@@ -7,25 +9,27 @@ import tickets from '../../assets/data/dummy-tickets.json'
 import {Link} from 'react-router-dom'
 
 export const TicketLists = () => {
-
-    const [str, setStr] = useState(" ")
-    const [dispTicket, setdispTicket] = useState(tickets)
+    const dispatch = useDispatch()
+    const [str, setStr] = useState("")
+    // const [dispTicket, setdispTicket] = useState(tickets)
     useEffect(() => {
         // setdispTicket(tickets)
-    }, [str,dispTicket])
+        dispatch(fetchAllTickets())
+    }, [str,dispatch])
+    // [str,dispTicket])
 
-    const handleOnChange=(e)=>{
-        const {value}=e.target
-        setStr(value)
-        // console.log(e.target);
-        searchTicket(value)
-    }
+    // const handleOnChange=(e)=>{
+    //     const {value}=e.target
+    //     setStr(value)
+    //     // console.log(e.target);
+    //     searchTicket(value)
+    // }
     
-    const searchTicket=sttr=>{
-       const displayTickets=tickets.filter(row=>
-       row.subject.toLowerCase().includes(sttr.toLowerCase()))
-        setdispTicket(displayTickets)
-    }
+    // const searchTicket=sttr=>{
+    //    const displayTickets=tickets.filter(row=>
+    //    row.subject.toLowerCase().includes(sttr.toLowerCase()))
+    //     // setdispTicket(displayTickets)
+    // }
 
     return (
         <Container>
@@ -41,13 +45,14 @@ export const TicketLists = () => {
                     </Col>
                     
                     <Col className="text-right">
-                        <Searchform handleOnChange={handleOnChange} str={str}></Searchform>
+                        <Searchform ></Searchform>
                     </Col>
                 </Row>
                 <hr />
                 <Row>
                     <Col>
-                            <TicketTable tickets={dispTicket}/>
+                            {/* <TicketTable tickets={dispTicket}/> */}
+                            <TicketTable></TicketTable>
                     </Col>
                 </Row>
         </Container>

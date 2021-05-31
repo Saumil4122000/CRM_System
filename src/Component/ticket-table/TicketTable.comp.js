@@ -2,8 +2,11 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import Proptypes from 'prop-types'
 import { Link } from 'react-router-dom'
-
-export const TicketTable = ({ tickets }) => {
+import {useSelector} from 'react-redux'
+export const TicketTable = () => {
+    const {searchTicketList,isLoading,error}=useSelector((state)=>state.tickets)
+    if(isLoading) return <h2>Loading.....</h2>
+    if(error) return <h3>{error}</h3>
     return (
         <Table striped bordered>
             <thead>
@@ -16,15 +19,15 @@ export const TicketTable = ({ tickets }) => {
             </thead>
             <tbody>
                 {/* Loop through the all objects in JSON file */}
-                {tickets.length ? tickets.map(row =>
-                    <tr key={row.id}>
+                {searchTicketList.length ? searchTicketList.map(row =>
+                    <tr key={row._id}>
                         
-                        <td>{row.id}</td>
+                        <td>{row._id}</td>
                         <td>
                             <Link to={`/ticket/${row.id}`}>{row.subject}</Link>    
                         </td>
                         <td>{row.status}</td>
-                        <td>{row.addedAt}</td>
+                        <td>{row.openAt}</td>
                     </tr>)
                     :
                     (
@@ -41,6 +44,6 @@ export const TicketTable = ({ tickets }) => {
         </Table>
     )
 }
-TicketTable.proptype={
-    tickets: Proptypes.array.isReuired
-}
+// TicketTable.proptype={
+//     tickets: Proptypes.array.isReuired
+// }
