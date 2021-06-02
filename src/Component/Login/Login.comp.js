@@ -5,7 +5,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import { loginPending, loginSuccess, loginFail } from './loginslice'
 // Gets the value from Entry.page.js
 import {useHistory} from 'react-router-dom';
-
+import {getUserProfile} from '../../pages/dashboard/userAction';
 import { userLogin } from "../../api/userApi";
 export const Login = ({ formSwitcher }) => {
 
@@ -38,12 +38,14 @@ export const Login = ({ formSwitcher }) => {
         dispatch(loginPending())
         try {
             const isAuth=await userLogin({email,password});
-           console.log(isAuth)
+        //    console.log(isAuth)
             if(isAuth.status==="Error"){
                 dispatch(loginFail(isAuth.message))
             }
           dispatch(loginSuccess())
         //   Login success then redirect to dashboard page
+          dispatch(getUserProfile())
+        //   once user login then fetch the user profile
           history.push("/dashboard")
         } catch (error) {
             dispatch(loginFail(error.message))

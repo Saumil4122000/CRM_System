@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 export const Header = () => {
     const history=useHistory()
     const logOut=()=>{
+        sessionStorage.removeItem('accessJWT')
         history.push("/")
     }
     return (
@@ -26,3 +27,10 @@ export const Header = () => {
         </Navbar>
     )
 }
+
+
+
+
+
+
+
