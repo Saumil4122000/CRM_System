@@ -10,8 +10,6 @@ export const fetchAllTickets = () => async(dispatch) => {
     } catch (error) {
         dispatch(fetchTicketFail(error.message))
     }
-
-
 }
 
 export const filterSearchTicket=(str)=>(dispatch)=>{
