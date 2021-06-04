@@ -5,16 +5,16 @@ import { AddTicket } from './pages/new-ticket/AddTicket.page';
 import { TicketLists } from './pages/ticket-list/TicketLists.page';
 import { Ticket } from './pages/ticket/Ticket.page';
 import { Entry } from './pages/entry/Entry.page';
-import { BrowserRouter as Router, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { PrivateRoute } from './Component/private-route/PrivateRoute.comp';
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <PrivateRoute exact path="/">
+          <Route  exact path="/">
             <Entry />
-          </PrivateRoute>
+          </Route>
           
             <PrivateRoute path="/dashboard">
               <Dashboard />

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Row, Col, Form, Container, Button,Spinner,Alert } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
 import {useDispatch,useSelector} from 'react-redux'
@@ -8,12 +8,18 @@ import {useHistory} from 'react-router-dom';
 import {getUserProfile} from '../../pages/dashboard/userAction';
 import { userLogin } from "../../api/userApi";
 export const Login = ({ formSwitcher }) => {
+    const dispatch = useDispatch()
+    const history=useHistory()
+    
+    const {isLoading,isAuth,error}=useSelector(state=>state.login)
+
+    useEffect(() => {
+        (sessionStorage.getItem('accessJWT')) && history.push("/dashboard")
+    }, [history,isAuth])
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const {isLoading,isAuth,error}=useSelector(state=>state.login)
-    const dispatch = useDispatch()
-    const history=useHistory()
+
     const handleOnchange = e => {
 
         const { name, value } = e.target
